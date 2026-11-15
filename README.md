@@ -30,8 +30,8 @@ Use Python 3.9+, a Linux VPS, Docker Engine and a stable HTTPS domain for hostin
 ## Run from source
 
 ```bash
-git clone https://github.com/smurfac4/northline-vpn-showcase.git
-cd northline-vpn-showcase
+git clone https://github.com/smurfac4/northline-vpn-bot.git
+cd northline-vpn-bot
 cp .env.example .env
 chmod 600 .env
 ```
