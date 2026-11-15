@@ -1,0 +1,23 @@
+.env
+nodes.json
+data/
+__pycache__/
+*.pyc
+
+proxy-nodes.json
+
+registry-backups/
+device-vpn-nodes.json
+
+*.refresh.lock
+dist/
+
+# Private instance data and credentials
+.env.*
+!.env.example
+*.sqlite3
+*.sqlite3-*
+*.db
+*.key
+*.pem
+*.ovpn

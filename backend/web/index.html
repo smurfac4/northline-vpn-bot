@@ -1,0 +1,108 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#0b0c10">
+  <title>Northline VPN</title>
+  <link rel="stylesheet" href="/style.css?v=16">
+  <script src="/telegram-web-app.js?v=1" defer></script>
+  <script src="/app.js?v=28" defer></script>
+</head>
+<body>
+<main>
+  <header>
+    <button id="brand-home" class="brand" type="button" aria-label="Northline — на главную"><span class="brand-mark" aria-hidden="true"><svg viewBox="0 0 32 32" fill="none"><path d="M7 24V8l18 16V8M7 16l9-8" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span>northline<small>PRIVATE CONNECTION</small></span></button>
+    <span id="mode" class="badge">VPN</span>
+  </header>
+  <section id="home">
+  <div class="home-heading"><h2>Подключение<span>.</span></h2><span class="eyebrow">NORTHLINE / 01</span></div>
+    <section class="hero" aria-labelledby="headline">
+      <div class="hero-top"><span>СТАТУС ДОСТУПА</span><span id="hero-state" class="hero-state">Загрузка</span></div>
+      <div class="hero-body">
+        <button id="dial-action" class="signal" type="button" aria-label="Создать профиль выбранной локации" disabled>
+          <svg class="orbit" viewBox="0 0 200 200" fill="none" aria-hidden="true"><circle class="orbit-track" cx="100" cy="100" r="89"/><circle class="orbit-ticks" cx="100" cy="100" r="77"/><path class="orbit-accent" d="M35 161a89 89 0 1 1 130 0"/><circle class="orbit-core" cx="100" cy="100" r="59"/><path class="power-symbol" d="M100 72v25M84 79a28 28 0 1 0 32 0"/></svg>
+          <span class="signal-dot" aria-hidden="true"></span>
+        </button>
+        <div class="hero-copy"><h1 id="headline">Загрузка профиля</h1><p id="subtitle">Проверяем состояние доступа…</p></div>
+      </div>
+      <div class="hero-bottom"><span class="hero-line"></span><span id="hero-caption">Два независимых режима доступа</span></div>
+    </section>
+    <div class="control-heading"><span>Область подключения</span><span aria-hidden="true">01 — 02</span></div>
+  <div class="scope-switch" role="group" aria-label="Режим подключения">
+    <button id="scope-device" class="active" aria-pressed="true"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="6" y="2" width="12" height="20" rx="3"/><path d="M10 18h4"/></svg><span>Всё устройство<small>Приложения и сайты</small></span></button>
+    <button id="scope-telegram" aria-pressed="false"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="m3 10 18-7-4 18-5-7-9-4Z"/><path d="m12 14 9-11"/></svg><span>Только Telegram<small>Прокси для мессенджера</small></span></button>
+  </div>
+  <p id="scope-description" class="scope-description">VPN для приложений и браузера</p>
+    <section id="profile" class="card profile-card" hidden>
+      <div class="section-label"><h2>Ваш доступ</h2><span class="status-indicator" id="state"></span></div>
+      <div class="remaining"><span>Доступ</span><strong id="remaining">—</strong></div><dl><div><dt>Сервер</dt><dd id="server"></dd></div><div><dt>Срок</dt><dd id="expires"></dd></div></dl>
+      <button id="setup" class="primary">Настройка подключения</button>
+      <button id="download" class="primary" hidden>Скачать конфигурацию</button>
+      <p id="import-help" class="hint" hidden>Откройте файл .conf в WireGuard. Его также можно получить командой /config в боте.</p>
+      <button id="revoke" class="secondary" hidden>Отключить профиль</button>
+
+    </section>
+    <form id="trial" class="card">
+      <div class="section-label"><span id="server-label">Локация подключения</span><span id="protocol" class="protocol">WireGuard</span></div>
+      <button type="button" id="choose" class="location" aria-labelledby="server-label selected"><span class="location-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="9"/><ellipse cx="12" cy="12" rx="4" ry="9"/><path d="M3 12h18"/></svg></span><span id="selected">Загрузка серверов…</span><span class="chevron" aria-hidden="true">⌄</span></button>
+      <button type="submit" id="activate" class="primary" disabled>Получить доступ</button>
+      <p id="trial-help" class="hint">Бессрочный доступ</p>
+    </form>
+    <button id="all-locations" class="server-link"><span class="location-stack" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><path d="m12 3 9 5-9 5-9-5 9-5Zm-9 9 9 5 9-5M3 16l9 5 9-5"/></svg></span><span>Карта локаций<small id="server-count">Список серверов</small></span><span class="chevron" aria-hidden="true">→</span></button>
+  </section>
+  <section id="account" hidden>
+    <div class="page-heading"><span class="eyebrow">NORTHLINE / 02</span><h1>Личный кабинет<span>.</span></h1></div>
+    <div class="identity card"><span class="identity-caption">NORTHLINE MEMBER</span><div class="avatar" aria-hidden="true"><svg viewBox="0 0 32 32" fill="none"><circle cx="16" cy="11" r="5"/><path d="M6 28v-2a10 10 0 0 1 20 0v2"/></svg></div><div><h2 id="user-name">Пользователь Telegram</h2><p id="user-id" class="hint"></p><button id="copy-id" class="text-button" hidden>Скопировать ID</button></div></div>
+    <p class="group-label">Профили по режимам</p>
+    <div class="mode-profiles"><button id="device-profile" class="mode-profile"><span class="profile-number" aria-hidden="true">01 ↗</span><span>Всё устройство<small>WireGuard / OpenVPN</small></span><strong id="device-profile-state">Нет профиля</strong></button><button id="telegram-profile" class="mode-profile"><span class="profile-number" aria-hidden="true">02 ↗</span><span>Только Telegram<small>MTProto</small></span><strong id="telegram-profile-state">Нет профиля</strong></button></div>
+    <p class="group-label">Управление</p>
+    <div class="menu-group"><button class="row" id="account-profile"><span>Мой профиль</span><span aria-hidden="true">›</span></button><button class="row" id="account-locations"><span>Серверы</span><span aria-hidden="true">›</span></button></div>
+    <button id="open-admin" class="row" hidden><span>Панель управления</span><span aria-hidden="true">↗</span></button>
+    <p class="group-label">Помощь</p>
+    <details><summary>Как работают два режима</summary><p>«Всё устройство» — профиль WireGuard или OpenVPN для приложений и браузера. «Только Telegram» — MTProto-прокси для приложения Telegram. Профили создаются и отключаются отдельно.</p><p>После выбора устройства скачайте клиент или отметьте, что он уже установлен. Затем нажмите «Импортировать конфиг» и включите VPN в клиенте.</p></details>
+    <details><summary>Смена сервера и режима</summary><p>Оба режима работают без ограничения по времени. Переключение режима не отключает второй профиль. Новый сервер потребует нового конфига VPN или новой ссылки прокси. Кнопка питания Telegram сохраняет профиль: на нашем сервере приостанавливает доступ, для публичного — открывает выбор подключения и настроек Telegram.</p></details>
+    <details><summary>Какие данные сохраняются</summary><p>Telegram ID, имя и username из Telegram, профили и история выбора серверов. Для работы сервиса ведётся журнал действий и запросов. Тексты переписки и содержимое VPN-трафика в этот журнал не попадают.</p><p>Кнопка «Отключить профиль» отзывает доступ, но не удаляет историю аккаунта.</p></details>
+    <button class="secondary close-app" id="close-app">Закрыть приложение</button>
+  </section>
+  <div class="sync-row"><span id="synced">Подключение к серверу…</span><button id="refresh" aria-label="Обновить состояние">↻ Обновить</button></div><p id="notice" role="status" aria-live="polite"></p><button id="retry" class="secondary" hidden>Повторить загрузку</button>
+  <footer>northline<span>©</span>VPN & Proxy</footer>
+</main>
+<nav aria-label="Навигация">
+  <button id="nav-home" class="active" aria-current="page"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="m3 10 9-7 9 7v10H15v-7H9v7H3V10Z"/></svg><span>Доступ</span></button>
+  <button id="nav-locations"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="12" cy="12" r="9"/><ellipse cx="12" cy="12" rx="4" ry="9"/><path d="M3 12h18"/></svg><span>Локации</span></button>
+  <button id="nav-account"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 21v-2a8 8 0 0 1 16 0v2"/></svg><span>Аккаунт</span></button>
+</nav>
+<dialog id="locations" aria-labelledby="locations-title">
+  <div class="sheet-grip" aria-hidden="true"></div>
+  <div class="sheet-heading"><div><span class="eyebrow">ВЫБОР МАРШРУТА</span><h2 id="locations-title">Локации<span>.</span></h2></div><button id="close-locations" class="close-sheet" aria-label="Закрыть список">×</button></div>
+  <div class="search-wrap"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6.5"/><path d="m16 16 4 4"/></svg><input id="search" type="search" placeholder="Найти страну" aria-label="Поиск страны" autocomplete="off"></div>
+  <p class="hint" id="location-count"></p><div id="location-list"></div><p id="empty" hidden>Ничего не найдено. Попробуйте другое название.</p>
+</dialog>
+<dialog id="connection-dialog" aria-labelledby="connection-title">
+  <div class="sheet-grip" aria-hidden="true"></div><div class="sheet-heading"><div><span id="connection-protocol" class="eyebrow">ПОДКЛЮЧЕНИЕ</span><h2 id="connection-title">Настройка</h2></div><button id="close-connection" class="close-sheet" aria-label="Закрыть инструкцию">×</button></div>
+  <label for="platform" class="platform-label">Ваше устройство</label>
+  <select id="platform"><option value="android">Android</option><option value="ios">iPhone / iPad</option><option value="windows">Windows</option><option value="macos">macOS</option><option value="linux">Linux</option><option value="other">Другое устройство</option></select>
+  <p id="connection-note" class="connection-note" role="status"></p>
+  <label id="client-choice" class="client-choice" hidden><input id="client-installed" type="checkbox"><span id="client-installed-label">Приложение уже установлено</span></label>
+  <button id="connection-app" class="primary" hidden disabled>Скачать приложение</button>
+  <button id="connection-import" class="primary" hidden disabled>Импортировать конфиг</button>
+  <button id="connection-download" class="primary" disabled>Скачать конфигурацию</button>
+  <button id="connection-connect" class="primary" hidden disabled>Подключить в Telegram</button>
+  <ol id="connection-steps" class="connection-steps"></ol>
+  <p id="connection-help" class="hint">Выберите устройство, чтобы получить инструкцию.</p>
+</dialog>
+<dialog id="telegram-session-dialog" aria-labelledby="telegram-session-title">
+  <div class="sheet-grip" aria-hidden="true"></div>
+  <div class="sheet-heading"><h2 id="telegram-session-title">Подключение Telegram</h2><button id="close-telegram-session" class="close-sheet" aria-label="Закрыть">×</button></div>
+  <p id="telegram-session-note">Профиль сохранится при отключении. Для публичного сервера переключатель соединения находится в Telegram; Mini App не видит его состояние.</p>
+  <button id="telegram-session-connect" class="primary">Включить в Telegram</button>
+  <a id="telegram-session-settings" class="secondary native-settings" href="tg://settings/data/proxy">Выключить в Telegram</a>
+  <p class="hint">Выключите «Использовать прокси». Если ссылка не открылась: Настройки → Данные и память → Прокси. На компьютере: Продвинутые настройки → Тип соединения.</p>
+</dialog>
+<dialog id="action-dialog" aria-labelledby="action-title" aria-describedby="action-description">
+  <div class="sheet-grip" aria-hidden="true"></div><h2 id="action-title"></h2><p id="action-description"></p>
+  <button id="action-submit" class="primary">Подтвердить</button><button id="action-cancel" class="secondary">Отмена</button>
+</dialog>
+</body>
+</html>

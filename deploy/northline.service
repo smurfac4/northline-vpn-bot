@@ -1,0 +1,15 @@
+[Unit]
+Description=Northline VPN backend and Telegram bot
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+WorkingDirectory=%h/northline
+ExecStart=/usr/bin/python3 run.py
+Restart=on-failure
+RestartSec=5
+UMask=0077
+NoNewPrivileges=true
+
+[Install]
+WantedBy=default.target

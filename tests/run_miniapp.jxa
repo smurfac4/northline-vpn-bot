@@ -1,0 +1,17 @@
+ObjC.import('Foundation');
+ObjC.import('JavaScriptCore');
+function run() {
+  const root = $.NSFileManager.defaultManager.currentDirectoryPath.js;
+  function read(path) {
+    return $.NSString.stringWithContentsOfFileEncodingError(root + '/' + path, $.NSUTF8StringEncoding, null).js;
+  }
+  const context = $.JSContext.new;
+  context.evaluateScript(read('tests/test_miniapp.js') + '\nvar result, failure; runMiniAppTests(' +
+    JSON.stringify(read('backend/web/app.js')) + ').then(value=>{result=value;},error=>{failure=String(error.stack || error);});');
+  if (!context.exception.isNil()) throw new Error(ObjC.unwrap(context.exception.toObject));
+  const failure = context.objectForKeyedSubscript('failure');
+  if (!failure.isUndefined) throw new Error(ObjC.unwrap(failure.toObject));
+  const result = context.objectForKeyedSubscript('result');
+  if (result.isUndefined) throw new Error('Asynchronous tests did not finish');
+  return ObjC.unwrap(result.toObject);
+}
